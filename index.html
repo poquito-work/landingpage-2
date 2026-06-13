@@ -34,10 +34,11 @@
   <div id="preloader" class="preloader">
     <div class="loader-content">
       <div class="loader-tiles-container">
-        <div class="loader-tile-wrapper"><img src="/mahjonj-tiles/Mpt1z.png" alt="East" class="loader-tile"></div>
-        <div class="loader-tile-wrapper"><img src="/mahjonj-tiles/Mpt2z.png" alt="South" class="loader-tile"></div>
-        <div class="loader-tile-wrapper"><img src="/mahjonj-tiles/Mpt3z.png" alt="West" class="loader-tile"></div>
-        <div class="loader-tile-wrapper"><img src="/mahjonj-tiles/Mpt7z.png" alt="Red Dragon" class="loader-tile"></div>
+        <div class="loader-tile-wrapper"><div class="css-tile tile-ma">麻</div></div>
+        <div class="loader-tile-wrapper"><div class="css-tile tile-chung">中</div></div>
+        <div class="loader-tile-wrapper"><div class="css-tile tile-dong">東</div></div>
+        <div class="loader-tile-wrapper"><div class="css-tile tile-fa">發</div></div>
+        <div class="loader-tile-wrapper"><div class="css-tile tile-xi">西</div></div>
       </div>
       <div class="loader-progress-bar">
         <div class="loader-progress-fill"></div>
@@ -85,16 +86,21 @@
             Practice, play, and compete your way to the top! Enjoy real-time Traditional Mahjong action at your fingertips. Experience the luxury of a private club, anywhere in the world.
           </p>
           
-          <!-- Download Buttons Container -->
-          <div class="download-container">
-            <span class="download-label" id="download-label-text">CHOOSE YOUR PLATFORM</span>
-            <div class="download-badges">
-              <a href="https://apps.apple.com" class="download-badge-link" target="_blank" rel="noopener" id="download-ios-badge">
-                <img src="/download-apple-app-store.svg" alt="Download on the App Store" class="app-store-badge-img">
-              </a>
-              <a href="https://play.google.com" class="download-badge-link" target="_blank" rel="noopener" id="download-android-badge">
-                <img src="/download-google-play-store.svg" alt="Get it on Google Play" class="google-play-badge-img">
-              </a>
+          <!-- Waitlist Form Container -->
+          <div class="waitlist-container">
+            <span class="waitlist-label" id="waitlist-label-text">REQUEST EXCLUSIVE ALPHA PORTAL ACCESS</span>
+            <form class="waitlist-form" id="hero-waitlist-form">
+              <div class="waitlist-input-group">
+                <input type="email" id="hero-waitlist-email" class="waitlist-input" placeholder="ENTER YOUR EMAIL ADDRESS" required>
+                <button type="submit" class="btn-waitlist-submit" id="hero-waitlist-submit">
+                  <span>RESERVE PASS</span>
+                </button>
+              </div>
+            </form>
+            <div class="waitlist-meta">
+              <span class="waitlist-stat"><span class="highlight-rust">12,548</span> CLAN MEMBERS IN QUEUE</span>
+              <span class="waitlist-meta-divider">·</span>
+              <span class="waitlist-availability">COMING SOON TO iOS & ANDROID</span>
             </div>
           </div>
         </div>
