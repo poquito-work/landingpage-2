@@ -26,8 +26,8 @@
   <link rel="icon" type="image/png" href="/Poquito_Logo_transparent.png">
 
   <!-- Main Stylesheet -->
-  <script type="module" crossorigin src="/assets/index-CQP9Qzb4.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-VLHWZgkV.css">
+  <script type="module" crossorigin src="/assets/index-DLOYuyVY.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-D9UfpAEd.css">
 </head>
 <body>
 
@@ -35,10 +35,11 @@
   <div id="preloader" class="preloader">
     <div class="loader-content">
       <div class="loader-tiles-container">
-        <div class="loader-tile-wrapper"><img src="/mahjonj-tiles/Mpt1z.png" alt="East" class="loader-tile"></div>
-        <div class="loader-tile-wrapper"><img src="/mahjonj-tiles/Mpt2z.png" alt="South" class="loader-tile"></div>
-        <div class="loader-tile-wrapper"><img src="/mahjonj-tiles/Mpt3z.png" alt="West" class="loader-tile"></div>
-        <div class="loader-tile-wrapper"><img src="/mahjonj-tiles/Mpt7z.png" alt="Red Dragon" class="loader-tile"></div>
+        <div class="loader-tile-wrapper"><div class="css-tile tile-ma">麻</div></div>
+        <div class="loader-tile-wrapper"><div class="css-tile tile-chung">中</div></div>
+        <div class="loader-tile-wrapper"><div class="css-tile tile-dong">東</div></div>
+        <div class="loader-tile-wrapper"><div class="css-tile tile-fa">發</div></div>
+        <div class="loader-tile-wrapper"><div class="css-tile tile-xi">西</div></div>
       </div>
       <div class="loader-progress-bar">
         <div class="loader-progress-fill"></div>
@@ -76,8 +77,19 @@
 
     <!-- SECTION 1: HERO + BANNER -->
     <section class="hero-section" id="hero">
+
+      <!-- VIDEO BACKGROUND LAYER — covers entire section -->
+      <div class="hero-bg">
+        <video class="hero-bg-video" id="hero-video" src="/Studio_product_photography_vid.mp4" autoplay muted playsinline></video>
+        <!-- Full-section dark overlay (overall tint) -->
+        <div class="hero-bg-tint"></div>
+        <!-- Left-to-right fade: solid green → transparent (seamless blend) -->
+        <div class="hero-bg-fade"></div>
+        <!-- Bottom edge fade to next section -->
+        <div class="hero-bg-bottom"></div>
+      </div>
+
       <div class="hero-container">
-        
         <!-- Left Editorial Content -->
         <div class="hero-editorial">
           <span class="hero-overline" id="hero-overline-text">INTRODUCING POCKET DRAGON</span>
@@ -86,116 +98,328 @@
             Practice, play, and compete your way to the top! Enjoy real-time Traditional Mahjong action at your fingertips. Experience the luxury of a private club, anywhere in the world.
           </p>
           
-          <!-- Download Buttons Container -->
-          <div class="download-container">
-            <span class="download-label" id="download-label-text">CHOOSE YOUR PLATFORM</span>
-            <div class="download-badges">
-              <a href="https://apps.apple.com" class="download-badge-link" target="_blank" rel="noopener" id="download-ios-badge">
-                <img src="/download-apple-app-store.svg" alt="Download on the App Store" class="app-store-badge-img">
-              </a>
-              <a href="https://play.google.com" class="download-badge-link" target="_blank" rel="noopener" id="download-android-badge">
-                <img src="/download-google-play-store.svg" alt="Get it on Google Play" class="google-play-badge-img">
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Mobile Screen Mockup -->
-        <div class="hero-visual">
-          <div class="phone-mockup-wrapper" id="phone-container-wrapper">
-            <div class="phone-device">
-              <div class="phone-inner">
-                <div class="phone-speaker"></div>
-                <div class="phone-camera"></div>
-                <div class="phone-screen">
-                  <video class="phone-video" src="/Studio_product_photography_vid.mp4" autoplay loop muted playsinline></video>
-                </div>
-                <div class="phone-home-indicator"></div>
+          <!-- Waitlist Form Container -->
+          <div class="waitlist-container">
+            <span class="waitlist-label" id="waitlist-label-text">REQUEST EXCLUSIVE ALPHA PORTAL ACCESS</span>
+            <form class="waitlist-form" id="hero-waitlist-form">
+              <div class="waitlist-input-group">
+                <input type="email" id="hero-waitlist-email" class="waitlist-input" placeholder="ENTER YOUR EMAIL ADDRESS" required>
+                <button type="submit" class="btn-waitlist-submit" id="hero-waitlist-submit">
+                  <span>RESERVE PASS</span>
+                </button>
               </div>
-              <div class="phone-reflection"></div>
+            </form>
+            <div class="waitlist-meta">
+              <span class="waitlist-stat"><span class="highlight-rust">12,548</span> CLAN MEMBERS IN QUEUE</span>
+              <span class="waitlist-meta-divider">·</span>
+              <span class="waitlist-availability">COMING SOON TO iOS &amp; ANDROID</span>
             </div>
           </div>
-          <!-- Micro subtle floating element for background ambient contrast -->
-          <div class="ambient-glow"></div>
         </div>
-
+        <!-- Right side intentionally empty — video shows through -->
+        <div class="hero-spacer"></div>
       </div>
+
     </section>
 
-    <!-- SECTION 2: THE COMPLETE MAHJONG PLAYGROUND -->
+
+    <!-- SECTION 2: THE MAHJONG PLAYGROUND — INTERACTIVE APP SHOWROOM -->
     <section class="playground-section" id="playground">
-      <div class="section-container">
-        <div class="playground-header">
-          <span class="section-overline">EXPERIENCE THE BOARD</span>
-          <h2 class="section-title">THE COMPLETE MAHJONG PLAYGROUND</h2>
-          <p class="section-subtitle">A meticulously designed digital salon for traditional gameplay, crafted for the ultimate gaming elite.</p>
+      <div class="orbit-container">
+
+        <!-- Section Header -->
+        <div class="orbit-header">
+          <span class="section-overline">INSIDE THE APP</span>
+          <h2 class="orbit-title">THE COMPLETE MAHJONG <span class="text-rust">PLAYGROUND</span></h2>
+          <p class="orbit-subtitle">Every mode, built for serious players. Tap a feature to see it live.</p>
         </div>
 
-        <div class="playground-grid-wrapper">
-          <!-- Sleek Editorial Grid of Showroom Boxes (Strict Design Brief Content) -->
-          <div class="playground-grid" id="playground-features-grid">
-            
-            <!-- Card 1: Practice Mode with Bots -->
-            <div class="playground-card feature-card" id="card-practice">
-              <div class="card-text-content">
-                <span class="card-number">SOLO PLAY</span>
-                <h3 class="card-title">Practice Mode with Bots</h3>
-                <p class="card-desc">Sharpen your game against intelligent AI at three difficulty levels. Every session builds your instincts, reads, and timing - no pressure, no judgment.</p>
-              </div>
-              <div class="floating-tiles-group">
-                <img src="/mahjonj-tiles/Mpt1m.png" alt="Character 1 Tile" class="floating-tile-img tile-1">
-                <img src="/mahjonj-tiles/Mpt2m.png" alt="Character 2 Tile" class="floating-tile-img tile-2">
-                <img src="/mahjonj-tiles/Mpt3m.png" alt="Character 3 Tile" class="floating-tile-img tile-3">
-              </div>
-            </div>
+        <!-- Orbit Layout: Features surrounding central phone -->
+        <div class="orbit-stage">
 
-            <!-- Card 2: Private Tables with Friends -->
-            <div class="playground-card feature-card" id="card-private">
-              <div class="card-text-content">
-                <span class="card-number">SOCIAL</span>
-                <h3 class="card-title">Private Tables with Friends</h3>
-                <p class="card-desc">Create a room, set your rules, share the link. Up to four players in a private, distraction-free game.</p>
-              </div>
-              <div class="floating-tiles-group">
-                <img src="/mahjonj-tiles/Mpt2z.png" alt="South Wind Tile" class="floating-tile-img tile-1">
-                <img src="/mahjonj-tiles/Mpt3z.png" alt="West Wind Tile" class="floating-tile-img tile-2">
-              </div>
-            </div>
+          <!-- LEFT FEATURES (3 cards) -->
+          <div class="orbit-features orbit-left">
 
-            <!-- Card 3: Public Lobby -->
-            <div class="playground-card feature-card" id="card-public">
-              <div class="card-text-content">
-                <span class="card-number">LIVE</span>
-                <h3 class="card-title">Public Lobby</h3>
-                <p class="card-desc">Jump into a live game instantly. Seat fills in seconds.</p>
-              </div>
-              <div class="floating-tiles-group">
-                <img src="/mahjonj-tiles/Mpt1z.png" alt="East Wind Tile" class="floating-tile-img tile-1">
-              </div>
-            </div>
-
-            <!-- Card 4: Ranked Points & Tiers -->
-            <div class="playground-card feature-card card-ranked-rich" id="card-ranked">
-              <div class="card-text-content">
-                <span class="card-number">COMPETITIVE</span>
-                <h3 class="card-title">RANKED POINTS & TIERS</h3>
-                <p class="card-desc">Climb from Beginner through Bronze, Silver, Gold, Platinum, and Grand Master. Every game is a step on your journey.</p>
-                <div class="tier-pills">
-                  <span class="tier-pill">BEGINNER</span>
-                  <span class="tier-pill">BRONZE</span>
-                  <span class="tier-pill">SILVER</span>
-                  <span class="tier-pill">GOLD</span>
-                  <span class="tier-pill">GRAND MASTER</span>
+            <!-- Feature 1: Practice Mode with Bots -->
+            <div class="orbit-feature-card active" id="ofc-practice" data-screen="practice">
+              <div class="ofc-connector ofc-connector-right"></div>
+              <div class="ofc-text">
+                <span class="ofc-overline">SOLO PLAY</span>
+                <h3 class="ofc-title">Practice Mode with Bots</h3>
+                <p class="ofc-desc">Sharpen your skills with endless practice rounds against intelligent AI.</p>
+                <div class="ofc-tags">
+                  <span class="ofc-tag">EASY</span>
+                  <span class="ofc-tag">MEDIUM</span>
+                  <span class="ofc-tag">HARD</span>
                 </div>
               </div>
-              <div class="card-visual-image">
-                <img src="/images/table-scene.png" alt="Mahjong Table Scene" class="ranked-bg-image">
+            </div>
+
+            <!-- Feature 2: Private Tables with Friends -->
+            <div class="orbit-feature-card" id="ofc-salon" data-screen="salon">
+              <div class="ofc-connector ofc-connector-right"></div>
+              <div class="ofc-text">
+                <span class="ofc-overline">SOCIAL</span>
+                <h3 class="ofc-title">Private Tables with Friends</h3>
+                <p class="ofc-desc">Round up your crew and deal in. Your table, your rules.</p>
+                <div class="ofc-tags">
+                  <span class="ofc-tag">INVITE LINK</span>
+                  <span class="ofc-tag">UP TO 4</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 5: Smart Matchmaking -->
+            <div class="orbit-feature-card" id="ofc-match" data-screen="match">
+              <div class="ofc-connector ofc-connector-right"></div>
+              <div class="ofc-text">
+                <span class="ofc-overline">INTELLIGENCE</span>
+                <h3 class="ofc-title">Smart Matchmaking</h3>
+                <p class="ofc-desc">The right table, right away. Skill-based matching finds your perfect game in seconds.</p>
+                <div class="ofc-tags">
+                  <span class="ofc-tag">SKILL-BASED</span>
+                  <span class="ofc-tag">INSTANT</span>
+                </div>
               </div>
             </div>
 
           </div>
-        </div>
-      </div>
+
+          <!-- CENTER: Phone Mockup -->
+          <div class="orbit-phone-wrap" id="orbit-phone-wrap">
+            <div class="orbit-phone-device">
+              <div class="orbit-phone-inner">
+                <div class="orbit-phone-speaker"></div>
+                <div class="orbit-phone-camera"></div>
+                <div class="orbit-phone-screen" id="orbit-screen">
+
+                  <!-- SCREEN: Practice Mode -->
+                  <div class="app-screen screen-practice active" id="screen-practice">
+                    <div class="app-statusbar">
+                      <span class="app-time">9:41</span>
+                      <span class="app-signal">●●●</span>
+                    </div>
+                    <div class="app-topbar">
+                      <span class="app-back">←</span>
+                      <span class="app-heading">SOLO PRACTICE</span>
+                      <span class="app-icon-right">⚙</span>
+                    </div>
+                    <div class="practice-diff-label">SELECT DIFFICULTY</div>
+                    <div class="practice-diff-cards">
+                      <div class="diff-card diff-easy">
+                        <span class="diff-icon">🌱</span>
+                        <span class="diff-name">EASY</span>
+                        <span class="diff-sub">Beginner AI</span>
+                      </div>
+                      <div class="diff-card diff-medium active-diff">
+                        <span class="diff-icon">⚔️</span>
+                        <span class="diff-name">MED</span>
+                        <span class="diff-sub">Club Player</span>
+                      </div>
+                      <div class="diff-card diff-hard">
+                        <span class="diff-icon">🐉</span>
+                        <span class="diff-name">HARD</span>
+                        <span class="diff-sub">Dragon AI</span>
+                      </div>
+                    </div>
+                    <div class="practice-board-preview">
+                      <div class="mini-wall">
+                        <div class="mini-tile"></div><div class="mini-tile"></div><div class="mini-tile"></div>
+                        <div class="mini-tile"></div><div class="mini-tile"></div><div class="mini-tile"></div>
+                        <div class="mini-tile"></div><div class="mini-tile"></div>
+                      </div>
+                      <div class="practice-hand-label">YOUR HAND</div>
+                      <div class="practice-hand">
+                        <div class="hand-tile t-red">中</div>
+                        <div class="hand-tile">一</div>
+                        <div class="hand-tile">二</div>
+                        <div class="hand-tile t-red">發</div>
+                        <div class="hand-tile selected-hand">九</div>
+                      </div>
+                    </div>
+                    <button class="app-cta-btn">START GAME</button>
+                  </div>
+
+                  <!-- SCREEN: Private Salon -->
+                  <div class="app-screen screen-salon" id="screen-salon">
+                    <div class="app-statusbar">
+                      <span class="app-time">9:41</span>
+                      <span class="app-signal">●●●</span>
+                    </div>
+                    <div class="app-topbar">
+                      <span class="app-back">←</span>
+                      <span class="app-heading">PRIVATE SALON</span>
+                      <span class="app-icon-right">＋</span>
+                    </div>
+                    <div class="salon-room-code-block">
+                      <span class="salon-code-label">ROOM CODE</span>
+                      <div class="salon-code">DRAGON-7749</div>
+                      <span class="salon-share">⬆ SHARE</span>
+                    </div>
+                    <div class="salon-seats">
+                      <div class="salon-seat occupied">
+                        <div class="seat-avatar" style="background:#1e4b33;">龍</div>
+                        <div class="seat-info"><span class="seat-name">DragonMaster</span><span class="seat-role">HOST</span></div>
+                      </div>
+                      <div class="salon-seat occupied">
+                        <div class="seat-avatar" style="background:#8c4220;">虎</div>
+                        <div class="seat-info"><span class="seat-name">TigerClaw99</span><span class="seat-role">PLAYER</span></div>
+                      </div>
+                      <div class="salon-seat empty">
+                        <div class="seat-avatar empty-avatar">？</div>
+                        <div class="seat-info"><span class="seat-name">Waiting...</span><span class="seat-role">OPEN</span></div>
+                      </div>
+                      <div class="salon-seat empty">
+                        <div class="seat-avatar empty-avatar">？</div>
+                        <div class="seat-info"><span class="seat-name">Waiting...</span><span class="seat-role">OPEN</span></div>
+                      </div>
+                    </div>
+                    <button class="app-cta-btn">START WITH BOTS</button>
+                  </div>
+
+                  <!-- SCREEN: Public Lobby -->
+                  <div class="app-screen screen-lobby" id="screen-lobby">
+                    <div class="app-statusbar">
+                      <span class="app-time">9:41</span>
+                      <span class="app-signal">●●●</span>
+                    </div>
+                    <div class="app-topbar">
+                      <span class="app-back">←</span>
+                      <span class="app-heading">PUBLIC LOBBY</span>
+                      <span class="app-icon-right">◎</span>
+                    </div>
+                    <div class="lobby-radar-container">
+                      <div class="lobby-radar">
+                        <div class="radar-ring r1"></div>
+                        <div class="radar-ring r2"></div>
+                        <div class="radar-ring r3"></div>
+                        <div class="radar-sweep"></div>
+                        <div class="radar-dot dot-1"></div>
+                        <div class="radar-dot dot-2"></div>
+                        <div class="radar-dot dot-3"></div>
+                      </div>
+                      <div class="lobby-status-text">FINDING OPPONENTS</div>
+                      <div class="lobby-dots"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="lobby-found-players">
+                      <div class="found-player"><span class="fp-flag">🇨🇳</span><span class="fp-name">Shanghai_Pro</span><span class="fp-rating">★ 2,340</span></div>
+                      <div class="found-player"><span class="fp-flag">🇸🇬</span><span class="fp-name">LionCity88</span><span class="fp-rating">★ 1,890</span></div>
+                      <div class="found-player fp-you"><span class="fp-flag">YOU</span><span class="fp-name">—</span><span class="fp-rating">★ —</span></div>
+                      <div class="found-player fp-waiting"><span class="fp-flag">⏳</span><span class="fp-name">Searching...</span><span class="fp-rating"></span></div>
+                    </div>
+                  </div>
+
+                  <!-- SCREEN: Ranked League -->
+                  <div class="app-screen screen-league" id="screen-league">
+                    <div class="app-statusbar">
+                      <span class="app-time">9:41</span>
+                      <span class="app-signal">●●●</span>
+                    </div>
+                    <div class="app-topbar">
+                      <span class="app-back">←</span>
+                      <span class="app-heading">RANKED LEAGUE</span>
+                      <span class="app-icon-right">🏆</span>
+                    </div>
+                    <div class="league-badge-block">
+                      <div class="league-badge">🐉</div>
+                      <div class="league-rank-name">GRAND MASTER</div>
+                      <div class="league-elo">2,748 ELO</div>
+                      <div class="league-progress-bar">
+                        <div class="league-progress-fill" style="width:78%;"></div>
+                      </div>
+                      <div class="league-progress-label">78% TO LEGEND</div>
+                    </div>
+                    <div class="league-leaderboard">
+                      <div class="lb-header"><span>RANK</span><span>PLAYER</span><span>ELO</span></div>
+                      <div class="lb-row lb-top1"><span class="lb-pos">🥇</span><span class="lb-name">MasterKong</span><span class="lb-elo">3,212</span></div>
+                      <div class="lb-row lb-top2"><span class="lb-pos">🥈</span><span class="lb-name">JadePhoenix</span><span class="lb-elo">3,044</span></div>
+                      <div class="lb-row lb-top3"><span class="lb-pos">🥉</span><span class="lb-name">RedDragon88</span><span class="lb-elo">2,981</span></div>
+                      <div class="lb-row lb-you"><span class="lb-pos">#4</span><span class="lb-name">YOU</span><span class="lb-elo">2,748</span></div>
+                    </div>
+                  </div>
+
+                  <!-- SCREEN: Smart Matchmaking -->
+                  <div class="app-screen screen-match" id="screen-match">
+                    <div class="app-statusbar">
+                      <span class="app-time">9:41</span>
+                      <span class="app-signal">●●●</span>
+                    </div>
+                    <div class="app-topbar">
+                      <span class="app-back">←</span>
+                      <span class="app-heading">SMART MATCH</span>
+                      <span class="app-icon-right">⚡</span>
+                    </div>
+                    <div class="match-skill-block">
+                      <div class="match-skill-label">YOUR SKILL LEVEL</div>
+                      <div class="match-skill-bar">
+                        <div class="match-skill-fill" style="width:68%;"></div>
+                      </div>
+                      <div class="match-skill-tier">GOLD TIER · 1,842 PTS</div>
+                    </div>
+                    <div class="lobby-radar-container">
+                      <div class="lobby-radar">
+                        <div class="radar-ring r1"></div>
+                        <div class="radar-ring r2"></div>
+                        <div class="radar-ring r3"></div>
+                        <div class="radar-sweep"></div>
+                        <div class="radar-dot dot-1"></div>
+                        <div class="radar-dot dot-2"></div>
+                        <div class="radar-dot dot-3"></div>
+                      </div>
+                      <div class="lobby-status-text">FINDING BEST MATCH</div>
+                      <div class="lobby-dots"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="match-criteria">
+                      <div class="match-crit-row"><span class="crit-icon">🎯</span><span class="crit-text">Skill range ±150 pts</span><span class="crit-ok">✓</span></div>
+                      <div class="match-crit-row"><span class="crit-icon">🌏</span><span class="crit-text">Low ping servers</span><span class="crit-ok">✓</span></div>
+                      <div class="match-crit-row"><span class="crit-icon">⏱</span><span class="crit-text">Est. wait: &lt;10s</span><span class="crit-ok">⚡</span></div>
+                    </div>
+                  </div>
+
+                </div><!-- /orbit-phone-screen -->
+                <div class="orbit-phone-home"></div>
+              </div>
+            </div>
+            <div class="orbit-phone-reflection"></div>
+            <!-- Ambient glow behind phone -->
+            <div class="orbit-phone-glow"></div>
+          </div>
+
+          <!-- RIGHT FEATURES (2 cards) -->
+          <div class="orbit-features orbit-right">
+
+            <!-- Feature 3: Public Lobby Tables -->
+            <div class="orbit-feature-card" id="ofc-lobby" data-screen="lobby">
+              <div class="ofc-connector ofc-connector-left"></div>
+              <div class="ofc-text">
+                <span class="ofc-overline">LIVE</span>
+                <h3 class="ofc-title">Public Lobby Tables</h3>
+                <p class="ofc-desc">The lobby's buzzing — grab a seat and jump straight into a live global game.</p>
+                <div class="ofc-tags">
+                  <span class="ofc-tag">REAL-TIME</span>
+                  <span class="ofc-tag">GLOBAL</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 4: Ranked Points & Tiers -->
+            <div class="orbit-feature-card" id="ofc-league" data-screen="league">
+              <div class="ofc-connector ofc-connector-left"></div>
+              <div class="ofc-text">
+                <span class="ofc-overline">COMPETITIVE</span>
+                <h3 class="ofc-title">Ranked Points &amp; Tiers</h3>
+                <p class="ofc-desc">Earn points, reach new tiers, and unlock exclusive rewards with every win.</p>
+                <div class="ofc-tags">
+                  <span class="ofc-tag">🐉 GRAND MASTER</span>
+                  <span class="ofc-tag">REWARDS</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div><!-- /orbit-stage -->
+      </div><!-- /orbit-container -->
     </section>
 
     <!-- INTERSTITIAL AMBIENT BANNER: THE ART OF TILES -->

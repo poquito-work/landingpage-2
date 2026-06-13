@@ -6,13 +6,15 @@
 document.addEventListener('DOMContentLoaded', () => {
   initPreloader();
   initCustomCursor();
-  initHeroMobileScreen();
+  initSeamlessHeroVideo();
+  initOrbitShowroom();
   initPlaygroundHoverSounds();
   initFaqAccordion();
   initFaqReveal();
   initSubscriptionModal();
   initLoginForm();
   initHeaderScroll();
+  initWaitlistForms();
 });
 
 /* ==========================================================================
@@ -251,38 +253,147 @@ function initCustomCursor() {
 }
 
 /* ==========================================================================
-   SECTION 1: HERO MOBILE SCREEN (3D Parallax Bezel Tilt)
+   HERO VIDEO: Seamless Crossfade Loop
+   Fades video opacity to 0 ~0.45s before the end, seeks to 0, fades back in.
+   This prevents the hard black-flash of the native 'loop' attribute.
    ========================================================================= */
-function initHeroMobileScreen() {
-  const wrapper = document.getElementById('phone-container-wrapper');
-  if (!wrapper) return;
+function initSeamlessHeroVideo() {
+  const video = document.getElementById('hero-video');
+  if (!video) return;
 
-  const visualContainer = wrapper.parentElement;
-  
-  visualContainer.addEventListener('mousemove', (e) => {
-    const rect = wrapper.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    // Relative coordinates between -1 and 1
-    const dx = (e.clientX - centerX) / (rect.width / 2);
-    const dy = (e.clientY - centerY) / (rect.height / 2);
+  const FADE_BEFORE_END = 0.55; // seconds before end to begin fade-out
+  const FADE_DURATION = 450;    // ms — must match CSS transition: opacity 0.45s
+  let fading = false;
 
-    // Max rotation in degrees
-    const maxRotX = 15; 
-    const maxRotY = 15;
+  video.addEventListener('timeupdate', () => {
+    if (!video.duration || fading) return;
 
-    const rotX = -dy * maxRotX;
-    const rotY = dx * maxRotY;
+    const remaining = video.duration - video.currentTime;
 
-    // Apply 3D warp to wrapper
-    wrapper.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(20px)`;
+    if (remaining <= FADE_BEFORE_END) {
+      fading = true;
+
+      // 1. Fade OUT
+      video.style.opacity = '0';
+
+      setTimeout(() => {
+        // 2. Seek silently back to start while invisible
+        video.currentTime = 0;
+        video.play().catch(() => {});
+
+        // 3. Fade back IN
+        video.style.opacity = '1';
+
+        // Release lock after full fade-in completes
+        setTimeout(() => {
+          fading = false;
+        }, FADE_DURATION);
+
+      }, FADE_DURATION);
+    }
   });
 
-  visualContainer.addEventListener('mouseleave', () => {
-    // Return smoothly to center state
-    wrapper.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0)';
+  // Subtle parallax tilt on hover over the frame
+  const frame = document.getElementById('hero-video-frame');
+  if (frame) {
+    frame.addEventListener('mousemove', (e) => {
+      const rect = frame.getBoundingClientRect();
+      const dx = ((e.clientX - rect.left) / rect.width  - 0.5) * 6;
+      const dy = ((e.clientY - rect.top)  / rect.height - 0.5) * -6;
+      frame.style.transform = `perspective(1200px) rotateY(${dx}deg) rotateX(${dy}deg) scale(1.01)`;
+      frame.style.transition = 'transform 0.1s ease';
+    });
+    frame.addEventListener('mouseleave', () => {
+      frame.style.transform = 'perspective(1200px) rotateY(0) rotateX(0) scale(1)';
+      frame.style.transition = 'transform 0.6s cubic-bezier(0.16,1,0.3,1)';
+    });
+  }
+}
+
+/* ==========================================================================
+   ORBIT SHOWROOM: Feature cards switch phone screen with clack feedback
+   ========================================================================= */
+function initOrbitShowroom() {
+  const cards = document.querySelectorAll('.orbit-feature-card');
+  const screens = document.querySelectorAll('#orbit-screen .app-screen');
+  if (!cards.length || !screens.length) return;
+
+  let autoTimer = null;
+  const screenIds = ['practice', 'salon', 'match', 'lobby', 'league'];
+  let currentIndex = 0;
+
+  const switchTo = (screenId) => {
+    // Update cards
+    cards.forEach(c => c.classList.toggle('active', c.dataset.screen === screenId));
+
+    // Update screens with a quick flash transition
+    screens.forEach(s => {
+      const isTarget = s.id === `screen-${screenId}`;
+      s.style.opacity = isTarget ? '1' : '0';
+      s.style.pointerEvents = isTarget ? 'auto' : 'none';
+      s.classList.toggle('active', isTarget);
+    });
+
+    // Clack sound
+    try { playTileClack(); } catch(e) {}
+  };
+
+  // Auto-rotate every 3.5s
+  const startAuto = () => {
+    autoTimer = setInterval(() => {
+      currentIndex = (currentIndex + 1) % screenIds.length;
+      switchTo(screenIds[currentIndex]);
+    }, 3500);
+  };
+
+  startAuto();
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      clearInterval(autoTimer);
+      const screenId = card.dataset.screen;
+      currentIndex = screenIds.indexOf(screenId);
+      switchTo(screenId);
+      // Resume auto after 8s
+      setTimeout(startAuto, 8000);
+    });
+
+    // Pause auto on hover
+    card.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    card.addEventListener('mouseleave', startAuto);
   });
+}
+
+/* ==========================================================================
+   WAITLIST FORMS: Hero + any secondary forms
+   ========================================================================= */
+function initWaitlistForms() {
+  const heroForm = document.getElementById('hero-waitlist-form');
+  if (heroForm) {
+    heroForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('hero-waitlist-email').value;
+      try { playTileClack(); } catch(e) {}
+
+      const btn = document.getElementById('hero-waitlist-submit');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span>✓ YOU\'RE IN THE QUEUE!</span>';
+      btn.style.background = 'var(--color-green-light)';
+      btn.disabled = true;
+
+      // Store in localStorage
+      const entries = JSON.parse(localStorage.getItem('pd_waitlist') || '[]');
+      if (!entries.includes(email)) entries.push(email);
+      localStorage.setItem('pd_waitlist', JSON.stringify(entries));
+
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+        heroForm.reset();
+      }, 4000);
+    });
+  }
 }
 
 /* ==========================================================================
